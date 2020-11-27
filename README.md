@@ -17,23 +17,24 @@ A Single Image Super Resolution Framework
 
 #### 2. Benchmark Datasets
 - [LapSRN](http://vllab.ucmerced.edu/wlai24/LapSRN/)
-    2.1 Download and extract the '''SR_testing_datasets.zip''' .
-    2.2 Choose where you want to save the '''test dataset''' and put '''Prepare_TestData_HR_LR.m''' in this folder.
-    2.3 Specific the path_original in '''Prepare_TestData_HR_LR.m'''
-    2.4 Start the test dataset process with '''matlab -nodesktop -nosplash -r Prepare_TestData_HR_LR'''
+
+    - 2.1 Download and extract the ```SR_testing_datasets.zip```.
+    - 2.2 Choose where you want to save the ```test dataset``` and put ```Prepare_TestData_HR_LR.m``` in this folder.
+    - 2.3 Specific the path_original in ```Prepare_TestData_HR_LR.m```
+    - 2.4 Start the test dataset process with ```matlab -nodesktop -nosplash -r Prepare_TestData_HR_LR```
 
 - final test dataset structure
 
-'''
+```
 |-- SR_testing_datasets.zip
 |-- path_original  # <-- this is path_original
     |-- BSD100
     |-- Set5
     |-- Set14
     |-- Urban100
-'''
+```
 
-'''
+```
 |-- your_test_data_file   #<-- will be used in model test
     |-- Prepare_TestData_HR_LR.m
     |-- HR
@@ -47,19 +48,19 @@ A Single Image Super Resolution Framework
             |-- Set5
             |-- Set14
             |-- Urban100
-'''
+```
 
 
 
 #### 3. Note
 - You should have a matlab in your computer
 - It would be a good choice to link files rather than put these dataset in your main folder.
-- We don't process '''historical''' since it is rarely used as benchmark.
+- We don't process ```historical``` since it is rarely used as benchmark.
 
 ### 2. Design Your Model
-1. Design your model in '''train/model'''
-2. Your model will be import from '''make_model''' function, so you must define this function in your custom model file.
-3. If you have some custom setting in your model like the '''block_number''', you can transfer the parameters throuh '''--model_choose'''.
+1. Design your model in ```train/model```
+2. Your model will be import from ```make_model``` function, so you must define this function in your custom model file.
+3. If you have some custom setting in your model like the ```block_number```, you can transfer the parameters throuh ```--model_choose```.
 
 ```python
 # a sample make_model function
@@ -87,7 +88,7 @@ def make_model(args, parent=False):
 3. run the following code
 > CUDA_VISIBLE_DEVICES=0 python main.py --scale 4 --model wsr --pre_train ../experiment/wsr/model/model_best.pt --test_only --save_results --chop --save ../experiment/wsr/ --dir_data your_test_data_file/ --ext img --data_test B100
 
-4. since there are many test dataset, it would be easier to write a '''.sh''' file. (Example is in '''run_test.sh''', run it with '''source run_test.sh''')
+4. since there are many test dataset, it would be easier to write a ```.sh``` file. (Example is in ```run_test.sh```, run it with ```source run_test.sh```)
 
 ### 5. Evaluate Your Model
 
