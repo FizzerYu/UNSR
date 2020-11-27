@@ -13,13 +13,13 @@ A Single Image Super Resolution Framework
 ## Usage
 ### 1. dataset preparation
 #### 1. Train Dataset
-- [DIV2K_dataset](https://data.vision.ee.ethz.ch/cvl/DIV2K/) 
+- Download train datasets from [DIV2K_dataset](https://data.vision.ee.ethz.ch/cvl/DIV2K/) 
 
 #### 2. Benchmark Datasets
-- [LapSRN](http://vllab.ucmerced.edu/wlai24/LapSRN/)
+- Download benchmark datasets from [LapSRN](http://vllab.ucmerced.edu/wlai24/LapSRN/)
 
     - 2.1 Download and extract the ```SR_testing_datasets.zip```.
-    - 2.2 Choose where you want to save the ```test dataset``` and put ```Prepare_TestData_HR_LR.m``` in this folder.
+    - 2.2 Choose where you want to save the test dataset and put ```Prepare_TestData_HR_LR.m``` in this folder
     - 2.3 Specific the path_original in ```Prepare_TestData_HR_LR.m```
     - 2.4 Start the test dataset process with ```matlab -nodesktop -nosplash -r Prepare_TestData_HR_LR```
 
@@ -27,7 +27,7 @@ A Single Image Super Resolution Framework
 
 ```
 |-- SR_testing_datasets.zip
-|-- path_original  # <-- this is path_original
+|-- path_original         # <-- this is path_original
     |-- BSD100
     |-- Set5
     |-- Set14
@@ -63,16 +63,17 @@ A Single Image Super Resolution Framework
 3. If you have some custom setting in your model like the ```block_number```, you can transfer the parameters throuh ```--model_choose```.
 
 ```python
-# a sample make_model function
+# A sample of make_model function
 def make_model(args, parent=False):
     if args.model_choose == 'RCAN':   # default model
         return mymodel(scale=args.scale[0])
     elif args.model_choose.startswith('custom'): 
-         # --model_choose custom_12_12_True 
-        custom_args = args.model_choose.split('_')[1:]  # remove the first "custom"
+         # input like --model_choose custom_12_12_True 
+        custom_args = args.model_choose.split('_')[1:]  
+        # transfer True and False
         custom_args = [True if x=='True' for x in custom_args]
         custom_args = [False if x=='Flase' for x in custom_args]
-        return mymodel(scale=args.scale[0], block_number1 = int(custom_args[0]), block_number2 = int(custom_args[1]), args3 = custom_args[2] )
+        return mymodel(scale=args.scale[0], block_number1 = int(custom_args[0]), block_number2 = int(custom_args[1]), block_number3 = custom_args[2] )
 ```
 
 
@@ -91,8 +92,9 @@ def make_model(args, parent=False):
 4. since there are many test dataset, it would be easier to write a ```.sh``` file. (Example is in ```run_test.sh```, run it with ```source run_test.sh```)
 
 ### 5. Evaluate Your Model
-
-
+1. cd to the main folder
+2. modify the ```Evaluate_PSNR_SSIM_benchmark.m```
+2. Start the evaluation process with ```matlab -nodesktop -nosplash -r Evaluate_PSNR_SSIM_benchmark```
 
 
 ## Package Usage
