@@ -2,6 +2,10 @@
 
 A Single Image Super Resolution Framework
 
+It would be hard for new learner start the first Single Image Super Resolution project, so here I introduce **A Single Image Super Resolution Framework** to you.
+Hope you enjoy it. :)
+
+## Feature
 - Easy use, easy train
 - End to End notes
 - Liunx system support
@@ -14,6 +18,22 @@ A Single Image Super Resolution Framework
 ### 1. dataset preparation
 #### 1. Train Dataset
 - Download train datasets from [DIV2K_dataset](https://data.vision.ee.ethz.ch/cvl/DIV2K/) 
+
+```
+|-- train
+    |-- DIV2K
+    |-- HR
+        |-- 0001.png
+        |-- 0002.png
+        |-- ...
+    |-- LR
+        |-- X2
+            |-- 0001x2.png
+            |-- 0002x2.png
+            |-- ...
+        |-- X3
+```
+
 
 #### 2. Benchmark Datasets
 - Download benchmark datasets from [LapSRN](http://vllab.ucmerced.edu/wlai24/LapSRN/)
@@ -103,5 +123,5 @@ torch-summary
 
 
 ## Reference
-This code was original from [RCAN](https://github.com/yulunzhang/RCAN) with modification
+This code was original from [RCAN](https://github.com/yulunzhang/RCAN) with modification. 
 
