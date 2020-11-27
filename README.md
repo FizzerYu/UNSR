@@ -41,7 +41,10 @@ Hope you enjoy it. :)
     - 2.1 Download and extract the ```SR_testing_datasets.zip```.
     - 2.2 Choose where you want to save the test dataset and put ```Prepare_TestData_HR_LR.m``` in this folder
     - 2.3 Specific the path_original in ```Prepare_TestData_HR_LR.m```
-    - 2.4 Start the test dataset process with ```matlab -nodesktop -nosplash -r Prepare_TestData_HR_LR```
+    - 2.4 Start the test dataset process with 
+    ```
+    matlab -nodesktop -nosplash -r Prepare_TestData_HR_LR
+    ```
 
 - final test dataset structure
 
@@ -100,21 +103,28 @@ def make_model(args, parent=False):
 ### 3. Train Your Model
 1. cd to the train folder
 2. run the following code
-
-> CUDA_VISIBLE_DEVICES=0 mypython main.py --model wsr --save wsr --scale 4 --decay_type cosine --lr 2e-4 --reset --ext bin --chop --save_results --print_model --patch_size 192 2>&1 | tee ./../experiment/wsr-`date +%Y-%m-%d-%H-%M-%S`.txt
+```
+CUDA_VISIBLE_DEVICES=0 mypython main.py --model wsr --save wsr --scale 4 --decay_type cosine --lr 2e-4 --reset --ext bin --chop --save_results --print_model --patch_size 192 2>&1 | tee ./../experiment/wsr-`date +%Y-%m-%d-%H-%M-%S`.txt
+```
 
 ### 4. Test Your Model
 1. cd to the test folder
 2. Copy the model folder from train folder(it would be convenient if you use link files)
 3. run the following code
-> CUDA_VISIBLE_DEVICES=0 python main.py --scale 4 --model wsr --pre_train ../experiment/wsr/model/model_best.pt --test_only --save_results --chop --save ../experiment/wsr/ --dir_data your_test_data_file/ --ext img --data_test B100
+```
+CUDA_VISIBLE_DEVICES=0 python main.py --scale 4 --model wsr --pre_train ../experiment/wsr/model/model_best.pt --test_only --save_results --chop --save ../experiment/wsr/ --dir_data your_test_data_file/ --ext img --data_test B100
+```
 
 4. since there are many test dataset, it would be easier to write a ```.sh``` file. (Example is in ```run_test.sh```, run it with ```source run_test.sh```)
 
 ### 5. Evaluate Your Model
 1. cd to the main folder
 2. modify the ```Evaluate_PSNR_SSIM_benchmark.m```
-2. Start the evaluation process with ```matlab -nodesktop -nosplash -r Evaluate_PSNR_SSIM_benchmark```
+3. Start the evaluation process with 
+
+```
+matlab -nodesktop -nosplash -r Evaluate_PSNR_SSIM_benchmark
+```
 
 
 ## Package Usage
