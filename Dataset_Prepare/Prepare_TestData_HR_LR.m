@@ -1,8 +1,8 @@
 function Prepare_TestData_HR_LR()
 clear all; close all; clc
-path_original = '/titan_data2/lichangyu/sr_dataset/test_dataset';
-
-dataset  = {'Set5', 'Set14', 'B100', 'Urban100', 'Manga109'};
+path_original = '/titan_data2/lichangyu/sr_dataset/test_dataset';    % choose the dataset
+ 
+dataset  = {'Set5', 'Set14', 'BSD100', 'Urban100', 'Manga109'};
 ext = {'*.jpg', '*.png', '*.bmp'};
 
 degradation = 'BI'; % BI, BD, DN
