@@ -96,10 +96,14 @@ parser.add_argument('--gan_k', type=int, default=1,
 # Optimization specifications
 parser.add_argument('--lr', type=float, default=1e-4,
                     help='learning rate')
+
 parser.add_argument('--lr_decay', type=int, default=200,
                     help='learning rate decay per N epochs')
 parser.add_argument('--decay_type', type=str, default='step',
-                    help='learning rate decay type')
+                    help='learning rate decay type (step | cosine)')
+parser.add_argument('--cosine_restart_epoch', type=int, default=250,
+                    help='cosine_restart_epoch')
+
 parser.add_argument('--gamma', type=float, default=0.5,
                     help='learning rate decay factor for step decay')
 parser.add_argument('--optimizer', default='ADAM',

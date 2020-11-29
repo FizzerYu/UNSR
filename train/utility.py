@@ -203,9 +203,11 @@ def make_scheduler(args, my_optimizer):
         ##############################
 
         ## need more to prevent error
-        T_period = [250, 500, 750, 1000, 1250]
-        restarts = [250, 500, 750, 1000, 1250]
-        restart_weights = [1, 1, 1, 1, 1]
+        # T_period = [250, 500, 750, 1000, 1250]
+        # restarts = [250, 500, 750, 1000, 1250]
+        T_period = list(range(args.cosine_restart_epoch, int((args.epochs/args.cosine_restart_epoch+1) * args.cosine_restart_epoch), args.cosine_restart_epoch ))
+        restarts = T_period
+	restart_weights = [1 for _ in range(len(restarts))]
 
         scheduler = CosineAnnealingLR_Restart(my_optimizer, T_period, eta_min=1e-7, restarts=restarts,
                                             weights=restart_weights)
